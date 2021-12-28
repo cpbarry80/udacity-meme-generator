@@ -12,7 +12,7 @@ from .txt_ingestor import TxtIngestor
 class Ingestor(IngestorInterface):
     """Class for selecting the right ingestor to use."""
     try:
-        ingestors = [CSVIngestor, PDFIngestords, DocxIngestor, TxtIngestor]
+        ingestors = [CSVIngestor, PDFIngestor, DocxIngestor, TxtIngestor]
     except NameError as e:
         print(f"{e}....check out ingestor.py line 15")
         exit(1)
