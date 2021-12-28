@@ -10,12 +10,12 @@ from .txt_ingestor import TxtIngestor
 
 
 class Ingestor(IngestorInterface):
-    """Select the appropriate helper class to parse the file."""
+    """Class for selecting the right ingestor to use."""
 
     ingestors = [CSVIngestor, PDFIngestor, DocxIngestor, TxtIngestor]
 
     @classmethod
-    def parse(cls, path: str) -> List[QuoteModel]:
+    def parse(cls, path):
         """Parse a file to return a list of QuoteModel objects."""
         for ingestor in cls.ingestors:
             if ingestor.can_ingest(path):

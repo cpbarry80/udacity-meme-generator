@@ -7,16 +7,13 @@ import pandas as pd
 
 
 class CSVIngestor(IngestorInterface):
-    """Ingests a .csv file."""
+    """Class for create qoute models out of a .csv file."""
 
     ingestable_file_types = ["csv"]
 
     @classmethod
-    def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse a file to return a list of QuoteModel objects."""
-        if not cls.can_ingest(path):
-            raise Exception("cannot ingest exception")
-
+    def parse(cls, path):
+        """Parse a .csv file and returns a list of QuoteModel objects."""
         quote_models_list = []
         df = pd.read_csv(path, header=0)
         for body, author in zip(df["body"], df["author"]):

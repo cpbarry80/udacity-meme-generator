@@ -8,21 +8,18 @@ import docx
 
 
 class DocxIngestor(IngestorInterface):
-    """Ingest a .docx file."""
+    """Class for create qoute models out of a .docx file."""
 
     ingestable_file_types = ["docx"]
 
     @classmethod
-    def parse(cls, path: str) -> List[QuoteModel]:
-        """Parse a file to return a list of QuoteModel objects."""
-        if not cls.can_ingest(path):
-            raise Exception("cannot ingest exception")
-
-        quotes = []
+    def parse(cls, path):
+        """Parse a .docx file and returns a list of QuoteModel objects."""
+        quote_models_list = []
         doc = docx.Document(path)
 
-        for para in doc.paragraphs:
-            if para.text != "":
-                body, author = para.text.split(" - ")
-                quotes.append(QuoteModel(body, author))
-        return quotes
+        for line in doc.paragraphs:
+            if line.text:
+                body, author = line.text.split(" - ")
+                quote_models_list.append(QuoteModel(body, author))
+        return quote_models_list
