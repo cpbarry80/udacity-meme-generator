@@ -6,12 +6,12 @@ from .quote_model import QuoteModel
 
 
 class IngestorInterface:
-    """Base class the all ingestors should inherit from."""
+    """Parent class for ingestors so they are consistent."""
 
     ingestable_file_types = []
 
     @classmethod
-    def can_ingest(cls, path: str) -> bool:
+    def can_ingest(cls, path):
         """Is file type able to be parsed."""
         file_type = path.split(".")[-1]
         is_ingestable = file_type in cls.ingestable_file_types
@@ -19,6 +19,6 @@ class IngestorInterface:
 
     @classmethod
     @abstractmethod
-    def parse(cls, path: str) -> List[QuoteModel]:
+    def parse(cls, path):
         """Parse a string."""
         pass
