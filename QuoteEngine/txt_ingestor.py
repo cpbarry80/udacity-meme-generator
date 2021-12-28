@@ -16,7 +16,11 @@ class TxtIngestor(IngestorInterface):
         quote_models_list = []
         f = open(path, "r", encoding="utf-8-sig")
         for line in f.readlines():
-            body, author = line.rstrip('\n').split(" - ")
-            quote_models_list.append(QuoteModel(f"'{body}'", author))
+            try:
+                body, author = line.rstrip('\n').split(" - ")
+            except ValueError:
+                continue
+            else:
+                quote_models_list.append(QuoteModel(f"'{body}'", author))
         f.close()
         return quote_models_list

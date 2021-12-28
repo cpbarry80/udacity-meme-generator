@@ -20,6 +20,10 @@ class DocxIngestor(IngestorInterface):
 
         for line in doc.paragraphs:
             if line.text:
-                body, author = line.text.split(" - ")
-                quote_models_list.append(QuoteModel(body, author))
+                try:
+                    body, author = line.text.split(" - ")
+                except ValueError:
+                    continue
+                else:
+                    quote_models_list.append(QuoteModel(body, author))
         return quote_models_list

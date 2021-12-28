@@ -15,7 +15,11 @@ class MemeEngine():
 
     def make_meme(self, img_path, text, author, width=500):
         """Create a meme given image, qoute's body and qoute's author."""
-        img = Image.open(img_path)
+        try:
+            img = Image.open(img_path)
+        except FileNotFoundError:
+            print("The file to make meme cant be found")
+            exit(1)
 
         ratio = img.size[1] / img.size[0]
         height = int(width * ratio)

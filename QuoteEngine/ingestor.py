@@ -11,8 +11,11 @@ from .txt_ingestor import TxtIngestor
 
 class Ingestor(IngestorInterface):
     """Class for selecting the right ingestor to use."""
-
-    ingestors = [CSVIngestor, PDFIngestor, DocxIngestor, TxtIngestor]
+    try:
+        ingestors = [CSVIngestor, PDFIngestords, DocxIngestor, TxtIngestor]
+    except NameError as e:
+        print(f"{e}....check out ingestor.py line 15")
+        exit(1)
 
     @classmethod
     def parse(cls, path):
@@ -20,3 +23,4 @@ class Ingestor(IngestorInterface):
         for ingestor in cls.ingestors:
             if ingestor.can_ingest(path):
                 return ingestor.parse(path)
+
