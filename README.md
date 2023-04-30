@@ -15,6 +15,5 @@ This puts the qoute on the image to create the meme
 
 
 ### Intermediate Python Nanodegree program from Udacity
-https://graduation.udacity.com/nd303
-
+confirm.udacity.com/TJPXSDUV
 
